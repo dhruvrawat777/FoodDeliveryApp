@@ -8,8 +8,12 @@ const ReviewSchema = new mongoose.Schema({
     reviewText: { type: String, required: true },
     photos: [{
         type: mongoose.Types.ObjectId,
-         ref: "Images",
+        ref: "Images",
     }],
-});
+},
+    {
+        timestamps: true,
+    }
+);
 
 export const ReviewModel = mongoose.model("Reviews", ReviewSchema);
