@@ -11,7 +11,7 @@ const FoodSchema = new mongoose.Schema({
     },
     price: { type: Number, default: 150, required: true },
     addOns: [{
-        type: mongoose.Types.ObjectId;
+        type: mongoose.Types.ObjectId,
         ref: "Foods",
     }],
     restaurant: {
