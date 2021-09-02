@@ -23,4 +23,4 @@ const RestaurantSchema = new mongoose.Schema({
     photos: { type: mongoose.Types.ObjectId, ref: "Images" },
 });
 
-const RestaurantModel = mongoose.model("Restaurants");
+export const RestaurantModel = mongoose.model("Restaurants",RestaurantSchema);
