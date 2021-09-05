@@ -25,7 +25,7 @@ Router.post("/signup", async (req, res) => {
         await UserModel.findByEmailAndPhone(req.body.credentials);
 
         //hash password
-       // const bcryptSalt = await bcrypt.genSalt(8);
+        // const bcryptSalt = await bcrypt.genSalt(8);
         //const hashedPassword = await bcrypt.hash(password, bcryptSalt);
 
         //save to dB
@@ -45,7 +45,7 @@ Router.post("/signup", async (req, res) => {
 
 /*
 Route   /signin
-Desc    signup with email and password
+Desc    signin with email and password
 Params  none
 Access  Public
 Method  POST
@@ -53,6 +53,17 @@ Method  POST
 
 
 
+Router.post("/signin", async (req, res) => {
+    try {
+
+        const user = await UserModel.findByEmailAndPassword(req.body.credentials);
+        const token = user.generateJwtToken();
+        return res.status(200).json({ token, status: "Success" });
+
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+});
 
 
 export default Router;
