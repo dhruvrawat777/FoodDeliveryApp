@@ -1,18 +1,49 @@
 import express from "express";
 import passport from "passport";
 
-import {FoodModel} from "../../database/allModels";
+import { FoodModel } from "../../database/food/index";
 
-const Router=express.Router();
+const Router = express.Router();
 
 /*
-Route   /google/callback
-Desc    google signin callback
-Params  none
+Route   /
+Desc    Get all food based on a particular restaurant
+Params  id
 Access  Public
 Method  GET
 */
+Router.get("/r/:_id", async (req, res) => {
+    try {
+        const { _id } = req.params;
+        const foods = await FoodModel.find({ restaurant: _id });
+        if (!foods) {
+            return res.status(404).json({ error: "Not found" });
+        }
+        return res.json({ foods });
+    }
+    catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+});
 
+
+/*
+Route   /r
+Desc    Get all food based on a particular category
+Params  id
+Access  Public
+Method  GET
+*/
+Router.get("/r/:category", async(req, res) => {
+    try {
+        const { category } = req.params;
+        const foods = await FoodModel.find({ category: { $regex: category, $options: "i" } });
+        return res.json({ foods });
+    }
+    catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+});
 
 
 

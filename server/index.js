@@ -17,7 +17,7 @@ import passport from "passport";
 //microservice routes
 import Auth from "./API/Auth/index";
 import Restaurant from "./API/Restaurants/index";
-
+import Food from './API/Food/index';
 const zomato = express();
 
 
@@ -35,6 +35,8 @@ zomato.use(passport.session());
 //Application routes
 zomato.use("/auth", Auth);
 zomato.use("/restaurant", Restaurant);
+zomato.use('/food', Food);
+
 
 zomato.get("/", (req, res) => {
     res.json({ message: "Setup success" });
