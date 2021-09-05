@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import passport from "passport";
 //Models
-import { UserModel } from "../../database/user";
+import { UserModel } from "../../database/user/index";
 
 
 const Router = express.Router();
