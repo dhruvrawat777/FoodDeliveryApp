@@ -18,6 +18,9 @@ import passport from "passport";
 import Auth from "./API/Auth/index";
 import Restaurant from "./API/Restaurants/index";
 import Food from './API/Food/index';
+import Image from "./API/image/index";
+
+
 const zomato = express();
 
 
@@ -36,7 +39,7 @@ zomato.use(passport.session());
 zomato.use("/auth", Auth);
 zomato.use("/restaurant", Restaurant);
 zomato.use('/food', Food);
-
+zomato.use("/image",Image);
 
 zomato.get("/", (req, res) => {
     res.json({ message: "Setup success" });
