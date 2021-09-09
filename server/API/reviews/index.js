@@ -2,7 +2,7 @@ import express from "express";
 import passport from "passport";
 
 
-import { ReviewModel } from "../../database/reviews/index";
+import { ReviewModel } from "../../database/reviews/index.js";
 
 
 const Router = express.Router();
@@ -30,7 +30,7 @@ Router.get("/new", async (req, res) => {
 });
 
 
-Router.delete("/delete/:_id", async (res, res) => {
+Router.delete("/delete/:_id", async (req, res) => {
     try {
         const { _id } = req.params;
         await ReviewModel.findByIdAndDelete(_id);

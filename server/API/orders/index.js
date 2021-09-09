@@ -2,7 +2,7 @@ import express from "express";
 import passport from "passport";
 
 
-import { OrderModel } from "../../database/orders/index";
+import { OrderModel } from "../../database/order/index";
 
 
 const Router = express.Router();
@@ -16,7 +16,7 @@ Access  Public
 Method  GET
 */
 
-Router.get("/:_id", async (res, res) => {
+Router.get("/:_id", async (req, res) => {
     try {
         const { _id } = req.params;
         const getOrders = await OrderModel.find({ user: _id });
@@ -45,8 +45,9 @@ Router.post("/new/:_id", async (req, res) => {
                 user: _id,
             },
             {
-                $push: { orderDetails },
-            }
+                $push: { orderDetails: orderDetails },
+            },
+            { new: true }
         );
         return res.json({ order: addNewOrder });
     } catch (error) {
