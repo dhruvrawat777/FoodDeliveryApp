@@ -2,21 +2,21 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 // Layout
-import HomeLayout from "../Layout/Home.layout";
+import RestaurantLayout from "../Layout/Restaurant.layout";
 
-const HomeLayoutHOC = ({ component: Component, ...rest }) => {
+const RestaurantLayoutHOC = ({ component: Component, ...rest }) => {
   return (
     <>
       <Route
         {...rest}
         component={(props) => (
-          <HomeLayout>
+          <RestaurantLayout>
             <Component {...props} />
-          </HomeLayout>
+          </RestaurantLayout>
         )}
       />
     </>
   );
 };
 
-export default HomeLayoutHOC;
+export default RestaurantLayoutHOC;
